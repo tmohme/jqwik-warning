@@ -3,16 +3,13 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.example</groupId>
-  <artifactId>jqwik-problem</artifactId>
+  <artifactId>jqwik-warning</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>jqwik-problem</name>
-  <url>http://maven.apache.org</url>
-
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven-surefire-plugin.version>2.21.0</maven-surefire-plugin.version>
+    <maven-surefire-plugin.version>2.22.0</maven-surefire-plugin.version>
   </properties>
 
   <dependencies>
@@ -57,15 +54,12 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>${maven-surefire-plugin.version}</version>
         <configuration>
+          <useSystemClassLoader>true</useSystemClassLoader>
+          <useManifestOnlyJar>true</useManifestOnlyJar>
+
           <forkCount>1</forkCount>
-          <reuseForks>false</reuseForks>
-          <!-- jvm>${jvm.primary}</jvm -->
-          <argLine>-Dfile.encoding=UTF-8 -Xmx3g -Xms512m</argLine>
+          <reuseForks>false</reuseForks> <!-- "false" triggers the warning -->
           <includes>
-            <include>**/Test*.java</include>
-            <include>**/*Test.java</include>
-            <include>**/*Tests.java</include>
-            <include>**/*TestCase.java</include>
             <include>**/*Properties.java</include>
           </includes>
         </configuration>
